@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +32,13 @@ public class ModelController {
         }
 
         @PostMapping("/")
-        public void add(@RequestBody Model model) {
+        public void add(@RequestBody @NotNull Model model) {
             modelService.saveModel(model);
         }
 
+        // @NotNull input validation
         @PutMapping("/{id}")
-        public ResponseEntity<?> update(@RequestBody Model model, @PathVariable Integer id) {
+        public ResponseEntity<?> update(@RequestBody @NotNull Model model, @PathVariable Integer id) {
             try {
                 Model existModel = modelService.getModel(id);
                 model.setId(id);
@@ -48,7 +50,7 @@ public class ModelController {
         }
 
         @DeleteMapping("/{id}")
-        public void delete(@PathVariable Integer id) {
+        public void delete(@PathVariable @NotNull Integer id) {
 
             modelService.deleteModel(id);
         }
