@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.controller;
 
-import jakarta.validation.constraints.NotNull;
+import com.example.demo.model.Model;
+import com.example.demo.service.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class ModelController {
     @RestController
-    @RequestMapping("/values")
-    public class UserController {
+    @RequestMapping("/models")
+    public class ModelController {
         @Autowired
         ModelService modelService;
 
@@ -32,15 +32,14 @@ public class ModelController {
         }
 
         @PostMapping("/")
-        public void add(@RequestBody @NotNull Model model) {
+        public void add(@RequestBody Model model) {
             modelService.saveModel(model);
         }
 
         // @NotNull input validation
         @PutMapping("/{id}")
-        public ResponseEntity<?> update(@RequestBody @NotNull Model model, @PathVariable Integer id) {
+        public ResponseEntity<?> update(@RequestBody Model model, @PathVariable Integer id) {
             try {
-                Model existModel = modelService.getModel(id);
                 model.setId(id);
                 modelService.saveModel(model);
                 return new ResponseEntity<>(HttpStatus.OK);
@@ -50,9 +49,8 @@ public class ModelController {
         }
 
         @DeleteMapping("/{id}")
-        public void delete(@PathVariable @NotNull Integer id) {
+        public void delete(@PathVariable Integer id) {
 
             modelService.deleteModel(id);
         }
     }
-}

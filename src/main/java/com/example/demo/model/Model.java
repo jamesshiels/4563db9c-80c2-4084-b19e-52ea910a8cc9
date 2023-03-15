@@ -1,11 +1,12 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="values")
+@Table(name = "models")
 public class Model {
     private int id;
+    private String sensorId;
     private String temperature;
     private String wind_speed;
     private String humidity;
@@ -19,8 +20,9 @@ public class Model {
 
     }
 
-    public Model(int id, String temperature, String wind_speed, String humidity, String min_, String max_, String sum_, String average, String date) {
+    public Model(int id, String sensorId, String temperature, String wind_speed, String humidity, String min_, String max_, String sum_, String average, String date) {
         this.id = id;
+        this.sensorId = sensorId;
         this.temperature = temperature;
         this.wind_speed = wind_speed;
         this.humidity = humidity;
@@ -39,6 +41,14 @@ public class Model {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getSensorId() {
+        return temperature;
+    }
+
+    public void setSensorId(String sensorId) {
+        this.temperature = temperature;
     }
 
     public String getTemperature() {
