@@ -33,6 +33,7 @@ import java.util.NoSuchElementException;
 
         @PostMapping("/")
         public void add(@RequestBody Model model) {
+
             modelService.saveModel(model);
         }
 
@@ -52,5 +53,15 @@ import java.util.NoSuchElementException;
         public void delete(@PathVariable Integer id) {
 
             modelService.deleteModel(id);
+        }
+
+        // Example metric calculator.
+        @RequestMapping(value = "/average", method = RequestMethod.GET)
+        public double getAverage(@RequestParam List<Double> values){
+            double sum = 0;
+            for(Double value : values){
+                sum += value;
+            }
+            return sum/values.size();
         }
     }
