@@ -44,11 +44,11 @@ public class Model {
     }
 
     public String getSensorId() {
-        return temperature;
+        return sensorId;
     }
 
     public void setSensorId(String sensorId) {
-        this.temperature = temperature;
+        this.sensorId = sensorId;
     }
 
     public String getTemperature() {
